@@ -52,7 +52,7 @@ mkdir -p ${para_dir}
 
 echo "*** spliting paragraph ***"
 # install nltk
-python split_paragraphs.py \
+python /content/uda/back_translate/split_paragraphs.py \
   --input_file=${input_file} \
   --output_file=${forward_src_dir}/file_${worker_id}_of_${replicas}.txt \
   --doc_len_file=${doc_len_dir}/doc_len_${worker_id}_of_${replicas}.json \
@@ -86,7 +86,7 @@ t2t-decoder \
   --data_dir=checkpoints
 
 echo "*** transform sentences back into paragraphs***"
-python sent_to_paragraph.py \
+python /content/uda/back_translate/sent_to_paragraph.py \
   --input_file=${backward_gen_dir}/file_${worker_id}_of_${replicas}.txt \
   --doc_len_file=${doc_len_dir}/doc_len_${worker_id}_of_${replicas}.json \
   --output_file=${para_dir}/file_${worker_id}_of_${replicas}.json
